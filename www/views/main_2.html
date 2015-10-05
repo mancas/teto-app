@@ -1,0 +1,11 @@
+<navigation-bar></navigation-bar>
+
+<section class="main" ng-attr-data-available="{{testList.length > 0}}">
+    <h1>Pide tu cita</h1>
+    <p>Me gustaría pedir cita para el <a href="" class="link">Día</a> a las <a href="" class="link">Hora</a>, por favor.</p>
+    <p>Mi nombre es <a href="" class="link">Nombre Apellido</a>. Muchas gracias! </p>
+
+    <md-button class="md-raised btn-disabled mt20">Pedir</md-button>
+    <!--<ripple-button ng-type="button" ng-class="['mt20', 'btn-disabled']" ng-text="Pedir"></ripple-button>-->
+</section>
+<draggable-list ng-items="testList" ng-if="testList.length > 0"></draggable-list>

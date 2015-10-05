@@ -1,0 +1,76 @@
+<navigation-bar></navigation-bar>
+
+<section class="main">
+    <h1>Pide tu cita</h1>
+
+    <form action="" method="post">
+        <div class="form-group">
+            <label for="user_name">Name</label>
+            <input id="user_name" type="text" name="user_name" placeholder="Your name..." />
+        </div>
+
+        <div class="form-group">
+            <label for="day">Day</label>
+            <select id="day" name="day">
+                <option name="Monday">Monday</option>
+                <option name="Tuesday">Tuesday</option>
+                <option name="Wednesday">Wednesday</option>
+                <option name="Thursday">Thursday</option>
+                <option name="Friday">Friday</option>
+                <option name="Saturday">Saturday</option>
+            </select>
+        </div>
+
+        <button type="submit">Send</button>
+    </form>
+</section>
+
+<section class="dates">
+    <ul>
+        <li>
+            Monday Aug 24, 23:30 pm
+        </li>
+        <li>
+            Tuesday Aug 25, 9:00 am
+        </li>
+    </ul>
+</section>
+
+<script>
+    var section = document.querySelector('section.dates');
+
+    var Draggable = function (element) {
+        this._element = element;
+        this._element.dataset.draggable = true;
+        this._element.addEventListener('touchstart', this.handleDragStart.bind(this), false);
+        this._element.addEventListener('touchmove', this.handleDrag.bind(this), false);
+        this._element.addEventListener('touchend', this.handleDrop.bind(this), false);
+    };
+
+    Draggable.prototype.handleDragStart = function(evt) {
+        this._dragging = true;
+        this._element.classList.add('dragging');
+        this._currentPositionY = evt.touches[0].clientY;
+        return false;
+    };
+
+    Draggable.prototype.handleDrag = function(evt) {
+        if (this._dragging) {
+            var incY =  this._currentPositionY - evt.touches[0].clientY;
+            var elemY = parseInt(this._element.clientHeight) + incY;
+            // Update current position
+            this._currentPositionY = evt.touches[0].clientY;
+            this._element.style.height = elemY + 'px';
+            return false;
+        }
+        return true;
+    };
+
+    Draggable.prototype.handleDrop = function() {
+        this._dragging = false;
+        this._element.classList.remove('dragging');
+        return false;
+    };
+
+    var draggable = new Draggable(section);
+</script>
